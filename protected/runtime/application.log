@@ -1,0 +1,22 @@
+2012/11/16 11:00:34 [error] [exception.CException] exception 'CException' with message 'User and its behaviors do not have a method or closure named "validatePassword".' in C:\WebServers\home\socialmarket.test\www\protected\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\WebServers\home\socialmarket.test\www\protected\framework\db\ar\CActiveRecord.php(226): CComponent->__call('validatePasswor...', Array)
+#1 C:\WebServers\home\socialmarket.test\www\protected\components\UserIdentity.php(41): CActiveRecord->__call('validatePasswor...', Array)
+#2 C:\WebServers\home\socialmarket.test\www\protected\components\UserIdentity.php(41): User->validatePassword('pass1')
+#3 C:\WebServers\home\socialmarket.test\www\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#4 C:\WebServers\home\socialmarket.test\www\protected\framework\validators\CInlineValidator.php(43): LoginForm->authenticate('password', Array)
+#5 C:\WebServers\home\socialmarket.test\www\protected\framework\validators\CValidator.php(214): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#6 C:\WebServers\home\socialmarket.test\www\protected\framework\base\CModel.php(158): CValidator->validate(Object(LoginForm), NULL)
+#7 C:\WebServers\home\socialmarket.test\www\protected\controllers\SiteController.php(94): CModel->validate()
+#8 C:\WebServers\home\socialmarket.test\www\protected\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#9 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(283): CController->run('login')
+#13 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#14 C:\WebServers\home\socialmarket.test\www\protected\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\WebServers\home\socialmarket.test\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://socialmarket.test/index.php?r=site/login
+---
