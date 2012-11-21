@@ -20,3 +20,47 @@ Stack trace:
 REQUEST_URI=/index.php?r=site/login
 HTTP_REFERER=http://socialmarket.test/index.php?r=site/login
 ---
+2012/11/21 15:28:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "customer".' in C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php:484
+Stack trace:
+#0 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(271): CController->missingAction('customer')
+#1 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(283): CController->run('customer')
+#2 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(142): CWebApplication->runController('site/customer')
+#3 C:\WebServers\home\socialmarket.test\www\protected\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 C:\WebServers\home\socialmarket.test\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=site/customer
+---
+2012/11/21 15:30:19 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\WebServers\home\socialmarket.test\www\protected\framework\web\auth\CAccessControlFilter.php:170
+Stack trace:
+#0 C:\WebServers\home\socialmarket.test\www\protected\framework\web\auth\CAccessControlFilter.php(133): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(283): CController->run('admin')
+#8 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(142): CWebApplication->runController('customer/admin')
+#9 C:\WebServers\home\socialmarket.test\www\protected\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\WebServers\home\socialmarket.test\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=customer/admin
+HTTP_REFERER=http://socialmarket.test/index.php?r=customer/index
+---
+2012/11/21 15:30:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\WebServers\home\socialmarket.test\www\protected\framework\web\auth\CAccessControlFilter.php:170
+Stack trace:
+#0 C:\WebServers\home\socialmarket.test\www\protected\framework\web\auth\CAccessControlFilter.php(133): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\WebServers\home\socialmarket.test\www\protected\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(283): CController->run('admin')
+#8 C:\WebServers\home\socialmarket.test\www\protected\framework\web\CWebApplication.php(142): CWebApplication->runController('customer/admin')
+#9 C:\WebServers\home\socialmarket.test\www\protected\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\WebServers\home\socialmarket.test\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=customer/admin
+HTTP_REFERER=http://socialmarket.test/index.php?r=customer/index
+---
