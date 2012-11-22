@@ -199,10 +199,10 @@ div.search-form {
 
 .register_user_type a.button {
 	display: inline-block;
-	width: auto;
+	width: 300px;
 	height: 150px;
-	padding: 120px 20px 0 20px;
-	margin: 0 auto;
+	padding: 80px 20px 40px 20px;
+	margin: 20px;
 	background: #398525; /* old browsers */
 	background: -moz-linear-gradient(top, #8DD297 0%, #398525 100%);
 	/* firefox */
@@ -212,7 +212,7 @@ div.search-form {
 	-webkit-box-shadow: inset 0px 0px 6px #fff;
 	border: 1px solid #5ea617;
 	border-radius: 10px;
-	font: bold 50px/20px Helvetica, Sans-Serif;
+	font: bold 50px/50px Helvetica, Sans-Serif;
 	text-align: center;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -221,6 +221,14 @@ div.search-form {
 	-moz-transition: color 0.25s ease-in-out;
 	-webkit-transition: color 0.25s ease-in-out;
 	transition: color 0.25s ease-in-out;
+}
+
+.register_user_type a.left{
+	float:left;
+}
+
+.register_user_type a.left{
+	float:right;
 }
 
 .register_user_type a.button:HOVER {

@@ -11,6 +11,11 @@
  */
 class User extends CActiveRecord
 {
+	// Сценарий регистрации
+	const SCENARIO_SIGNUP = 'signup';
+
+	// Повторный пароль нужно объявить, т.к. этого поля нет в БД
+	public $password_repeat;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -37,11 +42,32 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max'=>128),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on'=>'search'),
+				array('username, password, email', 'required'),
+				array('password, email', 'length', 'max'=>128),
+				// Длина логина должна быть в пределах от 5 до 30 символов
+				array('username', 'length', 'min'=>5, 'max'=>30),
+				// Логин должен соответствовать шаблону
+				array('username', 'match', 'pattern'=>'/^[A-z][\w]+$/'),
+				// Логин должен быть уникальным
+				array('username', 'unique'),
+				array('password', 'length', 'min'=>6, 'max'=>30),
+				// Повторный пароль и почта обязательны для сценария регистрации
+				array('password_repeat, email', 'required', 'on'=>self::SCENARIO_SIGNUP),
+				// Длина повторного пароля не менее 6 символов
+				array('password_repeat', 'length', 'min'=>6, 'max'=>30),
+				// Пароль должен совпадать с повторным паролем для сценария регистрации
+				array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on'=>self::SCENARIO_SIGNUP),
+				// Почта проверяется на соответствие типу
+				array('email', 'email', 'on'=>self::SCENARIO_SIGNUP),
+				// Почта должна быть в пределах от 6 до 50 символов
+				array('email', 'length', 'min'=>6, 'max'=>50),
+				// Почта должна быть уникальной
+				array('email', 'unique'),
+				// Почта должна быть написана в нижнем регистре
+				array('email', 'filter', 'filter'=>'mb_strtolower'),
+				// The following rule is used by search().
+				// Please remove those attributes that should not be searched.
+				array('id, username, password, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,11 +87,11 @@ class User extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
+		return array(				
+				'username' => 'Username',
+				'password' => 'Password',
+				'password_repeat' => 'Repeat password',
+				'email' => 'Email',
 		);
 	}
 
@@ -86,10 +112,10 @@ class User extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+				'criteria'=>$criteria,
 		));
 	}
-	
+
 	public function validatePassword($password)
 	{
 		return $password===$this->password;
