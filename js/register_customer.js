@@ -17,13 +17,13 @@ function locationChanged() {
 
 function formLocation() {
 	$("section").hide();
-	$("#location_form").submit(function(){
+	$("#location_form").submit(function() {
 		return false;
 	});
 	$("button#btn_location_correct").click(function() {
 		if (checkLocationForm()) {
 			formAccountInfo();
-		}else{
+		} else {
 			$("#fill_location_error").fadeIn();
 		}
 	});
@@ -38,10 +38,10 @@ function formLocation() {
 }
 
 function checkLocationForm() {
-	return $("input#country").val().length>0 &&
-	$("input#city").val().length>0&&
-	$("input#street").val().length>0&&
-	$("input#house").val().length>0;	
+	return $("input#country").val().length > 0
+			&& $("input#city").val().length > 0
+			&& $("input#street").val().length > 0
+			&& $("input#house").val().length > 0;
 }
 
 function formAccountInfo() {
@@ -53,16 +53,55 @@ function formAccountInfo() {
 }
 
 function checkAccountInfo() {
-	return $("input#login").val().length>0 &&
-	$("input#email").val().length>0&&
-	$("input#name").val().length>6&&
-	($("input#password").val()==$("input#password_confirm").val());	
+	return $("input#login").val().length > 0
+			&& $("input#email").val().length > 0
+			&& $("input#name").val().length > 6
+			&& ($("input#password").val() == $("input#password_confirm").val());
 }
 
-function submitRegistration(){
-	if(checkAccountInfo()){
-		
-	}else{
+function submitRegistration() {
+	if (checkAccountInfo()) {
+		// user object
+		var user = Object();
+		user.password = $("#password").val();
+		user.password_repeat = $("#password_confirm").val();
+		user.email = $("#email").val();
+		user.username = $("#login").val();
+
+		//
+		var customer = Object();
+		customer.name = $("#name").val();
+		customer.latitude = $("#latitude").val();
+		customer.longitude = $("#longitude").val();
+		customer.country = $("#country").val();
+		customer.region = $("#region").val();
+		customer.city = $("#city").val();
+		customer.district = $("#district").val();
+		customer.house = $("#house").val();
+		customer.apartment = $("#apartment").val();
+		customer.apartment = $("#apartment").val();
+		customer.address = getAddressAsString();
+
+		$.ajax({
+			url : "/?r=register/customer",
+			data : {
+				"user" : user,
+				"customer": customer
+			}, // returns all cells' data
+			dataType : 'json',
+			type : 'POST',
+			success : function(res) {
+				if (res.result == 'Ok') {					
+					
+				} else {
+					// status('Save error');
+				}
+			},
+			error : function() {
+				// status('Save error');
+			}
+		});
+	} else {
 		$("#fill_account_info").fadeIn();
 	}
 	return false;

@@ -48,7 +48,7 @@ class Customer extends CActiveRecord
 			array('address, user_id', 'required'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('name, country, region, city, district, house, apartment, address', 'length', 'max'=>255),
-			array('latitude, longitude', 'length', 'max'=>10),
+			array('latitude, longitude', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, latitude, longitude, country, region, city, district, house, apartment, address, user_id', 'safe', 'on'=>'search'),

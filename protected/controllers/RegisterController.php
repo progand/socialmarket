@@ -4,24 +4,25 @@ class RegisterController extends Controller
 {
 	public function actionCustomer()
 	{
-		// —оздать модель и указать ей, что используетс€ сценарий регистрации
-		$user = new User(User::SCENARIO_SIGNUP);
-		
 		// ≈сли пришли данные дл€ сохранени€
-		if(isset($_POST['User']))
+		if(isset($_POST['user']))
 		{
+			// —оздать модель и указать ей, что используетс€ сценарий регистрации
+			$user = new User(User::SCENARIO_SIGNUP);
+			$customer = new Customer();
+			
 			// Ѕезопасное присваивание значений атрибутам
-			$user->attributes = $_POST['User'];
+			$user->attributes = $_POST['user'];
+			$customer->attributes = $_POST['customer'];
 		
 			// ѕроверка данных
 			if($user->validate())
 			{
 				// —охранить полученные данные
 				// false нужен дл€ того, чтобы не производить повторную проверку
-				$user->save(false);
-		
-				// ѕеренаправить на список зарегестрированных пользователей
-				$this->redirect($this->createUrl('site/'));
+				$user->save(false);		
+				$customer->user_id = $user->id;
+				$customer->save();
 			}
 		}
 		
