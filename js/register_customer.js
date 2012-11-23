@@ -17,9 +17,14 @@ function locationChanged() {
 
 function formLocation() {
 	$("section").hide();
+	$("#location_form").submit(function(){
+		return false;
+	});
 	$("button#btn_location_correct").click(function() {
 		if (checkLocationForm()) {
 			formAccountInfo();
+		}else{
+			$("#fill_location_error").fadeIn();
 		}
 	});
 	if (navigator.geolocation) {
@@ -33,7 +38,10 @@ function formLocation() {
 }
 
 function checkLocationForm() {
-	return true;
+	return $("input#country").val().length>0 &&
+	$("input#city").val().length>0&&
+	$("input#street").val().length>0&&
+	$("input#house").val().length>0;	
 }
 
 function formAccountInfo() {
@@ -41,6 +49,23 @@ function formAccountInfo() {
 	$("section#account_info").fadeIn();
 	var address = getAddressAsString();
 	$("section#account_info p#address").text(address);
+	$("section#account_info form").submit(submitRegistration);
+}
+
+function checkAccountInfo() {
+	return $("input#login").val().length>0 &&
+	$("input#email").val().length>0&&
+	$("input#name").val().length>6&&
+	($("input#password").val()==$("input#password_confirm").val());	
+}
+
+function submitRegistration(){
+	if(checkAccountInfo()){
+		
+	}else{
+		$("#fill_account_info").fadeIn();
+	}
+	return false;
 }
 
 function getAddressAsString() {

@@ -97,13 +97,19 @@ section#location span,section#account_info span {
 }
 
 button#btn_location_correct {
-	float: right;
+	
 }
 
 section#location button#btn_location_correct span {
 	margin: 0;
 	padding: 0;
 	color: inherit;
+}
+
+.warning{
+	margin:20px;
+	display:none;
+	color: red;
 }
 
 /*Section account info*/
